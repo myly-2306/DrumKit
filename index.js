@@ -6,6 +6,8 @@ for (var i = 0; i <= buttonLength.length; i++) {
     buttonLength[i].addEventListener("click", function (){
         this.style.color = "white";
         makeSound(this.innerHTML);
+        buttonAnimation(this.innerHTML);
+
     });
 };
 
@@ -38,7 +40,7 @@ for (var i = 0; i <= buttonLength.length; i++) {
 document.addEventListener("keydown", function(event) {
     console.log("this is pressed:", event );
     makeSound(event.key);
-    
+    buttonAnimation(event.key);
 });
 
 
@@ -85,4 +87,39 @@ function makeSound(key) {
             console.log("No button detected")
             break;
     }
+};
+
+
+// add style to button when pressed
+
+// var buttonAnimation = setInterval(function (currentKey) {
+//     var activeButton = document.querySelector("." + currentKey);
+//     if (activeButton) {
+//         activeButton.classList.add("pressed");
+//     } else {
+//         clearInterval(buttonAnimation);
+//     };
+    
+// },1000);
+
+
+// function buttonAnimation(currentKey) {
+    
+//     var activeButton = document.querySelector("." + currentKey);
+//     if (activeButton) {
+//         activeButton.classList.add("pressed");
+//     } else {
+//         activeButton.classList.remove("pressed");
+//     };
+// }
+
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setInterval(function(){
+        activeButton.classList.remove("pressed");
+    },500);
+    
 };
